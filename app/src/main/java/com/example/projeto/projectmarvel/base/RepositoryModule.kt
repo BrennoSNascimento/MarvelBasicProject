@@ -1,8 +1,11 @@
 package com.example.projeto.projectmarvel.base
 
+import com.example.projeto.projectmarvel.data.detailApi.DetailApi
 import com.example.projeto.projectmarvel.data.homeApi.HomeApi
 import com.example.projeto.projectmarvel.domain.repository.HomeRepository
 import com.example.projeto.projectmarvel.domain.repository.HomeRepositoryImpl
+import com.example.projeto.projectmarvel.domain.repository.detail.DetailRepository
+import com.example.projeto.projectmarvel.domain.repository.detail.DetailRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,4 +21,9 @@ class RepositoryModule {
         return HomeRepositoryImpl(homeApi)
     }
 
+    @Singleton
+    @Provides
+    fun provideDetailRepository(detailApi: DetailApi) : DetailRepository {
+        return DetailRepositoryImpl(detailApi)
+    }
 }

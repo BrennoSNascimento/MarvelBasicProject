@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.core.view.PointerIconCompat.load
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.example.projeto.projectmarvel.R
 import com.example.projeto.projectmarvel.databinding.FragmentHomeBinding
 import com.example.projeto.projectmarvel.domain.Results
 import com.example.projeto.projectmarvel.presentation.adapter.AdapterHome
@@ -32,8 +34,6 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel.setSearch()
-        //Picasso.get().load("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg").into(binding.img)
-        //Glide.with(requireContext()).load("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/portrait_xlarge.jpg").into(binding.img)
         setupObserver()
         setupAdapter()
         return binding.root
@@ -68,9 +68,9 @@ class HomeFragment : Fragment() {
         binding.rvCharacters.apply {
             characterAdapter.onItemClickListener = {
                 val args = Bundle().apply {
-                    //putSerializable(ARG, it)
+                    putSerializable(ARG, it)
                 }
-                //findNavController().navigate(R.id.action_homeFragment_to_movieDetailFragment, args)
+                findNavController().navigate(R.id.action_homeFragment_to_detailFragment, args)
             }
         }
     }
