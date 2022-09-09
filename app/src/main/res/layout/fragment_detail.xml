@@ -73,7 +73,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_comics"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="260dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
