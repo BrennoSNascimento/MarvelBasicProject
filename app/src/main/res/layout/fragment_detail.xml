@@ -52,12 +52,27 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:text="asjdhaksljdhlkasjdhsalkdjhaslkdjh"
+            android:text=""
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_img" />
+
+        <TextView
+            android:id="@+id/tv_no_comics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="60dp"
+            android:text="Has no commics ..."
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_rv_title" />
 
         <TextView
             android:id="@+id/tv_rv_title"
@@ -81,7 +96,7 @@
             android:layout_marginBottom="10dp"
             android:importantForAccessibility="yes"
             android:orientation="horizontal"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_rv_title"

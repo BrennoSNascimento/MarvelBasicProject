@@ -39,6 +39,11 @@ class DetailFragment : Fragment() {
 
     private fun setup() {
         selectedCharacter = arguments?.getSerializable(ARG) as ResultsMarvel
+
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
+        }
+
         setupView()
         setupObserver()
         setupAdapter()
@@ -51,7 +56,13 @@ class DetailFragment : Fragment() {
 
         Picasso.get().load("${selectedCharacter.thumbnail.path}.jpg").into(binding.ivImg)
 
-        binding.tvDescription.text = selectedCharacter.description
+        if (!selectedCharacter.description.isNullOrEmpty()){
+            binding.tvDescription.text = selectedCharacter.description
+        }
+        else{
+            binding.tvDescription.setText(R.string.no_description)
+        }
+
     }
 
     private fun setupObserver() {
@@ -68,8 +79,16 @@ class DetailFragment : Fragment() {
 
                 is Results.MarvelApiComicsResults.Success -> {
                     binding.progress.visibility = View.GONE
-                    comicsAdapter.updateItemsHome(it.comicsList.data.results)
-
+                    if (it.comicsList.data.results.isNullOrEmpty()){
+                        binding.rvComics.visibility = View.GONE
+                        binding.tvNoComics.visibility = View.VISIBLE
+                    }
+                    else{
+                        binding.rvComics.visibility = View.VISIBLE
+                        binding.tvNoComics.visibility = View.GONE
+                        comicsAdapter.updateItemsHome(it.comicsList.data.results)
+                    }
+                    //comicsAdapter.updateItemsHome(it.comicsList.data.results)
                 }
             }
         }
