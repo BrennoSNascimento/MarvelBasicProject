@@ -56,13 +56,32 @@ class DetailFragment : Fragment() {
 
         Picasso.get().load("${selectedCharacter.thumbnail.path}.jpg").into(binding.ivImg)
 
-        if (!selectedCharacter.description.isNullOrEmpty()){
+        animate()
+
+        if (!selectedCharacter.description.isNullOrEmpty()) {
             binding.tvDescription.text = selectedCharacter.description
-        }
-        else{
+        } else {
             binding.tvDescription.setText(R.string.no_description)
         }
 
+    }
+
+    private fun animate(){
+        binding.ivImg.animate().apply {
+            duration = 1000
+            scaleXBy(.5f)
+            scaleYBy(.5f)
+            rotationYBy(360f)
+            translationYBy(200f)
+        }.withEndAction {
+            binding.ivImg.animate().apply {
+                duration = 1000
+                scaleXBy(-.5f)
+                scaleYBy(-.5f)
+                rotationXBy(360f)
+                translationYBy(-200f)
+            }
+        }.start()
     }
 
     private fun setupObserver() {
@@ -79,11 +98,10 @@ class DetailFragment : Fragment() {
 
                 is Results.MarvelApiComicsResults.Success -> {
                     binding.progress.visibility = View.GONE
-                    if (it.comicsList.data.results.isNullOrEmpty()){
+                    if (it.comicsList.data.results.isNullOrEmpty()) {
                         binding.rvComics.visibility = View.GONE
                         binding.tvNoComics.visibility = View.VISIBLE
-                    }
-                    else{
+                    } else {
                         binding.rvComics.visibility = View.VISIBLE
                         binding.tvNoComics.visibility = View.GONE
                         comicsAdapter.updateItemsHome(it.comicsList.data.results)
