@@ -3,18 +3,19 @@ package com.example.projeto.projectmarvel.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.projectmarvel.data.model.ResultSeries
+import com.example.projeto.projectmarvel.data.model.SavedCharacter
 import com.example.projeto.projectmarvel.databinding.ItemComicsBinding
+import com.example.projeto.projectmarvel.databinding.ItemFavoritedBinding
 import com.squareup.picasso.Picasso
 
-class AdapterSeries : RecyclerView.Adapter<AdapterSeries.Holder>(), AdapterContract {
+class AdapterFavorited : RecyclerView.Adapter<AdapterFavorited.Holder>(), AdapterContract {
 
-    lateinit var onItemClickListener: (ResultSeries) -> Unit
-    private var seriesList: MutableList<ResultSeries> = ArrayList()
+    lateinit var onItemClickListener: (SavedCharacter) -> Unit
+    private var seriesList: MutableList<SavedCharacter> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
-            ItemComicsBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            ItemFavoritedBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onItemClickListener
         )
     }
@@ -27,30 +28,30 @@ class AdapterSeries : RecyclerView.Adapter<AdapterSeries.Holder>(), AdapterContr
         return seriesList.size
     }
 
-    fun updateItemsHome(itemList: List<ResultSeries>) {
+    fun updateItemsHome(itemList: List<SavedCharacter>) {
         seriesList.addAll(itemList)
         notifyDataSetChanged()
     }
 
     override fun replaceItems(items: List<*>) {
-        this.seriesList = items.filterIsInstance<ResultSeries>() as MutableList<ResultSeries>
+        this.seriesList = items.filterIsInstance<SavedCharacter>() as MutableList<SavedCharacter>
         notifyDataSetChanged()
     }
 
     class Holder(
-        private val binding: ItemComicsBinding,
-        private val onItemClickListener: (ResultSeries) -> Unit,
+        private val binding: ItemFavoritedBinding,
+        private val onItemClickListener: (SavedCharacter) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
-        lateinit var content: ResultSeries
+        lateinit var content: SavedCharacter
 
-        fun bind(content: ResultSeries) {
+        fun bind(content: SavedCharacter) {
             val imgUrl = "${content.thumbnail.path}.${content.thumbnail.extension}"
 
             Picasso.get().load(imgUrl).resize(800, 0).into(binding.ivPoster)
 
-            binding.tvTitle.text = content.title
+            binding.tvTitle.text = content.name
 
-            binding.root.setOnClickListener {
+            binding.icClose.setOnClickListener {
                 onItemClickListener.invoke(content)
             }
 

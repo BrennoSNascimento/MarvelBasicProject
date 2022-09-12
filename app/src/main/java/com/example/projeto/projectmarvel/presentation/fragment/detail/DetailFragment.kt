@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.projeto.projectmarvel.R
 import com.example.projeto.projectmarvel.data.model.ResultsMarvel
+import com.example.projeto.projectmarvel.data.storage.SharedPreferences
 import com.example.projeto.projectmarvel.databinding.FragmentDetailBinding
 import com.example.projeto.projectmarvel.domain.Results
 import com.example.projeto.projectmarvel.presentation.adapter.AdapterComics
@@ -64,9 +65,17 @@ class DetailFragment : Fragment() {
             binding.tvDescription.setText(R.string.no_description)
         }
 
+        binding.ivImg.setOnClickListener {
+            SharedPreferences(requireContext()).compare(
+                selectedCharacter.id,
+                selectedCharacter.name,
+                selectedCharacter.thumbnail
+            )
+        }
+
     }
 
-    private fun animate(){
+    private fun animate() {
         binding.ivImg.animate().apply {
             duration = 1000
             scaleXBy(.5f)

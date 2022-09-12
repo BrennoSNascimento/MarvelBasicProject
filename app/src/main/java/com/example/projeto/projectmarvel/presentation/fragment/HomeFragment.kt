@@ -36,6 +36,11 @@ class HomeFragment : Fragment() {
         viewModel.setSearch()
         setupObserver()
         setupAdapter()
+
+        binding.tvTitle.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_favoritedCharactersFragment)
+        }
+
         return binding.root
     }
 
