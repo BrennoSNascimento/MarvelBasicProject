@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
         viewModel.characterState.observe(viewLifecycleOwner) {
             when (it) {
                 Results.MarvelApiResults.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
                     viewModel.isLoading.value = true
                 }
 
@@ -51,6 +52,7 @@ class HomeFragment : Fragment() {
                 }
 
                 is Results.MarvelApiResults.Success -> {
+                    binding.progress.visibility = View.GONE
                     characterAdapter.updateItemsHome(it.characterList.data.results)
 
                 }

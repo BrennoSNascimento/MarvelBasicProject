@@ -58,6 +58,7 @@ class DetailFragment : Fragment() {
         viewModel.characterState.observe(viewLifecycleOwner) {
             when (it) {
                 Results.MarvelApiComicsResults.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
                     viewModel.isLoading.value = true
                 }
 
@@ -66,6 +67,7 @@ class DetailFragment : Fragment() {
                 }
 
                 is Results.MarvelApiComicsResults.Success -> {
+                    binding.progress.visibility = View.GONE
                     comicsAdapter.updateItemsHome(it.comicsList.data.results)
 
                 }
@@ -80,10 +82,7 @@ class DetailFragment : Fragment() {
 
         binding.rvComics.apply {
             comicsAdapter.onItemClickListener = {
-//                    val args = Bundle().apply {
-//                        putSerializable(ARG, it)
-//                    }
-//                    findNavController().navigate(R.id.action_homeFragment_to_detailFragment, args)
+
             }
         }
 
