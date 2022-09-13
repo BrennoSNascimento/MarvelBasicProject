@@ -65,7 +65,7 @@ class DetailFragment : Fragment() {
             binding.tvDescription.setText(R.string.no_description)
         }
 
-        binding.ivImg.setOnClickListener {
+        binding.tvAddCharacter.setOnClickListener {
             SharedPreferences(requireContext()).compare(
                 selectedCharacter.id,
                 selectedCharacter.name,

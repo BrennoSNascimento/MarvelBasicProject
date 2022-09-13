@@ -98,7 +98,6 @@
             android:orientation="horizontal"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_rv_title"
             tools:itemCount="3"
             tools:listitem="@layout/item_comics" />
@@ -113,5 +112,21 @@
             app:layout_constraintBottom_toBottomOf="@id/rv_comics"
             android:visibility="visible"
             android:theme="@style/ProgressBar"/>
+
+        <TextView
+            android:id="@+id/tv_add_character"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:text="* Add to favorites *"
+            android:visibility="visible"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_comics"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

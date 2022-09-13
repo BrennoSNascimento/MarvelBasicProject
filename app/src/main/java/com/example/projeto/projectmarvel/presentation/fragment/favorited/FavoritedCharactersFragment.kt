@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.projeto.projectmarvel.R
 import com.example.projeto.projectmarvel.data.storage.SharedPreferences
 import com.example.projeto.projectmarvel.databinding.FragmentFavoritedCharactersBinding
@@ -43,6 +44,10 @@ class FavoritedCharactersFragment : Fragment() {
     }
 
     fun setupView(){
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(R.id.action_favoritedCharactersFragment_to_homeFragment)
+        }
+
         favoriteCharactersAdapter.replaceItems(SharedPreferences(requireContext()).getList())
     }
 

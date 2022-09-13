@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         setupObserver()
         setupAdapter()
 
-        binding.tvTitle.setOnClickListener {
+        binding.tvFavoritedCharacters.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_favoritedCharactersFragment)
         }
 
